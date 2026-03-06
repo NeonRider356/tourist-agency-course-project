@@ -1,0 +1,38 @@
+digraph G {
+  graph [rankdir=LR, splines=ortho, nodesep=0.6, ranksep=0.9, pad=0.2];
+  node [fontname="Arial"];
+  edge [fontname="Arial"];
+
+  visitor [shape=plaintext, label="Посетитель"];
+  manager [shape=plaintext, label="Турменеджер"];
+  system [shape=plaintext, label="Система"];
+
+  subgraph cluster_sys {
+    label="ИС \"Туристическое агентство\"";
+    fontsize=18;
+    style=rounded;
+    color="#777777";
+    uc1 [shape=ellipse, label="Авторизоваться"];
+    uc2 [shape=ellipse, label="Просматривать туры"];
+    uc3 [shape=ellipse, label="Сформировать\nплан отдыха"];
+    uc4 [shape=ellipse, label="Оформить\nбронирование"];
+    uc5 [shape=ellipse, label="Вести\nсправочник туров"];
+    uc6 [shape=ellipse, label="Получить\nстатистику по странам"];
+    uc7 [shape=ellipse, label="Применить скидку\nна горячий тур"];
+    uc8 [shape=ellipse, label="Подобрать тур\nпо параметрам"];
+  }
+
+  visitor -> uc1;
+  visitor -> uc2;
+  visitor -> uc3;
+  visitor -> uc4;
+  visitor -> uc8;
+  manager -> uc1;
+  manager -> uc5;
+  manager -> uc6;
+  manager -> uc7;
+  manager -> uc8;
+  system -> uc7;
+  uc3 -> uc8 [label="<<include>>", style=dashed];
+  uc4 -> uc7 [label="<<extend>>", style=dashed];
+}

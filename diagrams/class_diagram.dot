@@ -1,0 +1,18 @@
+digraph G {
+  graph [rankdir=TB, pad=0.2, nodesep=0.5, ranksep=0.7];
+  node [shape=record, fontname="Arial", fontsize=10];
+  edge [fontname="Arial", fontsize=9];
+
+  Visitor [label="{Visitor|+Id:int\l+FullName:string\l+Email:string\l+Phone:string\l}"];
+  Tour [label="{Tour|+Id:int\l+Title:string\l+Country:string\l+City:string\l+StartDate:DateTime\l+DurationDays:int\l+BasePrice:decimal\l+IsHot:bool\l+AvailableSeats:int\l+Status:TourStatus\l|+GetActualPrice(discount):decimal\l}"];
+  BookingPlan [label="{BookingPlan|-_tours:List<Tour>\l|+AddTour(tour)\l+RemoveTour(id)\l+GetTotal(discount):decimal\l}"];
+  DiscountService [label="{DiscountService|+HotTourDiscountPercent:decimal\l|+GetDiscountedPrice(tour):decimal\l+MarkAsHotIfNeeded(tour,date):bool\l}"];
+  StatisticsService [label="{StatisticsService||+CountToursByCountrySequential(tours)\l+CountToursByCountryParallel(tours)\l}"];
+  SampleDataFactory [label="{SampleDataFactory||+CreateTours():List<Tour>\l}"];
+
+  Visitor -> BookingPlan [label="1  owns  1"];
+  BookingPlan -> Tour [label="1  contains  0..*"];
+  DiscountService -> Tour [label="processes"];
+  StatisticsService -> Tour [label="analyzes 0..*"];
+  SampleDataFactory -> Tour [label="creates"];
+}

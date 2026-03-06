@@ -1,0 +1,53 @@
+digraph G {
+  graph [rankdir=LR, splines=ortho, nodesep=0.5, ranksep=1.0, pad=0.3];
+  node [shape=plaintext, fontname="Arial", fontsize=10];
+  edge [fontname="Arial", fontsize=9];
+
+  v [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+      <TR><TD BGCOLOR="lightgray"><B>Посетитель</B></TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+    </TABLE>
+  >];
+  app [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+      <TR><TD BGCOLOR="lightgray"><B>TouristAgency.App</B></TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+    </TABLE>
+  >];
+  ds [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+      <TR><TD BGCOLOR="lightgray"><B>DiscountService</B></TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+    </TABLE>
+  >];
+  bp [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+      <TR><TD BGCOLOR="lightgray"><B>BookingPlan</B></TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+      <TR><TD> </TD></TR>
+    </TABLE>
+  >];
+
+  v -> app [label="1: выбирает тур"];
+  app -> ds [label="2: проверить скидку"];
+  ds -> app [label="3: вернуть цену"];
+  app -> bp [label="4: AddTour(tour)"];
+  bp -> app [label="5: план обновлен"];
+  app -> v [label="6: показать итоговую стоимость"];
+}

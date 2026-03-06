@@ -1,0 +1,22 @@
+digraph G {
+  graph [rankdir=LR, pad=0.2, nodesep=0.6, ranksep=0.7];
+  node [shape=circle, width=0.2, label="", fontname="Arial"];
+  start;
+  node [shape=box, style=rounded, fontname="Arial", fontsize=10];
+  draft [label="Черновик"];
+  published [label="Опубликован"];
+  hot [label="Горящий тур"];
+  booked [label="Забронирован"];
+  archived [label="Архив"];
+  end [shape=doublecircle, width=0.25, label=""];
+
+  start -> draft;
+  draft -> published [label="публикация"];
+  published -> hot [label="до вылета <= 7 дней\nи есть места"];
+  published -> booked [label="оформление брони"];
+  hot -> booked [label="покупка/бронь"];
+  booked -> archived [label="поездка завершена"];
+  published -> archived [label="тур снят с продажи"];
+  hot -> archived [label="мест нет / дата истекла"];
+  archived -> end;
+}
